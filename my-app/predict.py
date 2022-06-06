@@ -28,7 +28,7 @@ racas = [
     "cardigan"
 ]
 
-model = tf.keras.models.load_model('my-app/cp_96.h5')
+model = tf.keras.models.load_model('cp_96.h5')
 
 def predict(image_file):
 
