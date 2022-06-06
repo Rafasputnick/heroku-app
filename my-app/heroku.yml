@@ -1,5 +1,9 @@
 build:
   docker:
     web: Dockerfile
-run:
-  web: bundle exec python bot.py
+  run:
+  web: bundle exec puma -C config/puma.rb
+  worker:
+    command:
+      - python bot.py
+    image: web
