@@ -17,4 +17,4 @@ RUN chgrp -R 0 /my-app \
     && pip install -r requirements.txt
 EXPOSE $PORT
 
-CMD python bot.py
+CMD gunicorn app:server --bind 0.0.0.0:$PORT --preload && python bot.py
