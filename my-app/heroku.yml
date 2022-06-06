@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  worker: python bot.py
+  web: bundle exec python bot.py
