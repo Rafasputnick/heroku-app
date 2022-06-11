@@ -4,3 +4,4 @@ tensorflow
 numpy
 requests
 opencv-contrib-python
+Pillow
