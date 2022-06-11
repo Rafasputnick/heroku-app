@@ -33,7 +33,7 @@ racas = [
     "cardigan"
 ]
 
-model = tf.keras.models.load_model('heroku-app/my-app/model_upload.h5')
+model = tf.keras.models.load_model('model_upload.h5')
 
 def predict_img(image_file):
 
