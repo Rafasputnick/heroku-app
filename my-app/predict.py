@@ -1,23 +1,28 @@
 import tensorflow as tf
 import numpy as np
+import cv2
 
-image_width = 40
-image_height = 40
+image_width = 220
+image_height = 220
 image_size = (image_width, image_height)
+
+def converter_imagem(diretorio):
+    imagem = cv2.imread(diretorio)
+    imagem = tratar_imagem(imagem)
+    cv2.imwrite(diretorio, imagem)
+
+def tratar_imagem(imagem):
+
+    imagem_gray = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
+    imagem_blur = cv2.GaussianBlur(imagem_gray, (5,5), 0)
+
+    sobelxy = cv2.Sobel(src=imagem_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5)
+
+    return sobelxy
 
 racas = [
     "affenpinscher",
     "afghan_hound",
-    "african_hunting_dog",
-    "airedale",
-    "american_staffordshire_terrier",
-    "appenzeller",
-    "australian_terrier",
-    "basenji",
-    "basset",
-    "beagle",
-    "bedlington_terrier",
-    "bernese_mountain_dog",
     "black-and-tan_coonhound",
     "blenheim_spaniel",
     "bloodhound",
@@ -28,9 +33,9 @@ racas = [
     "cardigan"
 ]
 
-model = tf.keras.models.load_model('cp_96.h5')
+model = tf.keras.models.load_model('heroku-app/my-app/model_upload.h5')
 
-def predict(image_file):
+def predict_img(image_file):
 
     image = tf.keras.preprocessing.image.load_img(image_file, target_size = image_size, color_mode='grayscale')
     image = tf.keras.preprocessing.image.img_to_array(image)
