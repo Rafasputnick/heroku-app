@@ -3,3 +3,4 @@ python-decouple
 tensorflow
 numpy
 requests
+opencv-contrib-python
